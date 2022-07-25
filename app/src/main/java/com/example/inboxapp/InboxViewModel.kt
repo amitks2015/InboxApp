@@ -14,7 +14,7 @@ class InboxViewModel: ViewModel() {
 
     val uiState = MutableStateFlow(InboxState())
 
-    private fun loadContent() {
+    fun loadContent() {
         viewModelScope.launch {
             uiState.value = uiState.value.copy(
                 status = InboxStatus.LOADING
