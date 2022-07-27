@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 class InboxViewModel: ViewModel() {
 
     val uiState = MutableStateFlow(InboxState())
+    private var count = 0
 
     fun loadContent() {
         viewModelScope.launch {
@@ -20,10 +21,22 @@ class InboxViewModel: ViewModel() {
                 status = InboxStatus.LOADING
             )
             delay(2000)
-            uiState.value = uiState.value.copy(
-                status = InboxStatus.SUCCESS,
-                content = EmailFactory.makeEmailList()
-            )
+            if(count == 0) {
+                count++
+                uiState.value = uiState.value.copy(
+                    status = InboxStatus.ERROR
+                )
+            } else if (count == 1) {
+                count++
+                uiState.value = uiState.value.copy(
+                    status = InboxStatus.EMPTY
+                )
+            } else {
+                uiState.value = uiState.value.copy(
+                    status = InboxStatus.SUCCESS,
+                    content = EmailFactory.makeEmailList()
+                )
+            }
         }
     }
 

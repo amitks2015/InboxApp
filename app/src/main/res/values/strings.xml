@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">InboxApp</string>
     <string name="title_inbox">Inbox (%s)</string>
+    <string name="message_content_error">Uh Oh! There was a problem loading the content.</string>
+    <string name="try_again_label">Try again?</string>
+    <string name="message_content_empty">Nothing to show here yet.</string>
+    <string name="check_again_label">Check again</string>
 </resources>
