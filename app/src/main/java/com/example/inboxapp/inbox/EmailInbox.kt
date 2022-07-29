@@ -45,12 +45,19 @@ fun EmailInbox(
                 .padding(it),
             contentAlignment = Alignment.Center
         ) {
-            if(state.status == InboxStatus.LOADING) {
-                CircularProgressIndicator()
-            } else if(state.status == InboxStatus.ERROR) {
-                ErrorState(inboxEventListener = eventListener)
-            } else if(state.status == InboxStatus.EMPTY) {
-                EmptyState(inboxEventListener = eventListener)
+            when (state.status) {
+                InboxStatus.LOADING -> {
+                    CircularProgressIndicator()
+                }
+                InboxStatus.ERROR -> {
+                    ErrorState(inboxEventListener = eventListener)
+                }
+                InboxStatus.EMPTY -> {
+                    EmptyState(inboxEventListener = eventListener)
+                }
+                InboxStatus.SUCCESS -> {
+                    EmailList(emailList = state.content!!)
+                }
             }
         }
     }
