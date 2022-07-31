@@ -56,7 +56,10 @@ fun EmailInbox(
                     EmptyState(inboxEventListener = eventListener)
                 }
                 InboxStatus.SUCCESS -> {
-                    EmailList(emailList = state.content!!)
+                    EmailList(
+                        emailList = state.content!!,
+                        eventListener = eventListener
+                    )
                 }
             }
         }
